@@ -24,6 +24,9 @@ var (
 
 // handle is the main HTTP handler function for all requests to the server
 func handle(w http.ResponseWriter, req *http.Request) {
+	// Log request handling
+	log.Infof("Handling request for '%s'", req.URL.String())
+
 	fmt.Fprintf(w, "Hi there, I'm listening on port %s!", *port)
 }
 
