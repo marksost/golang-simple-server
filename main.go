@@ -1,3 +1,7 @@
+// golang-simple-server implements a simple "Hello World"-esque Golang
+// HTTP server that handles requests with a server bound to a customizable port
+// It's useful for testing other applications and services that need to ensure
+// connectivity between servers
 package main
 
 import (
