@@ -17,6 +17,13 @@ import (
 	log "github.com/Sirupsen/logrus"
 )
 
+const (
+	// Default port to use for the server
+	DEFAULT_PORT = "8080"
+	// Default server timeout
+	DEFAULT_SERVER_TIMEOUT = 30
+)
+
 var (
 	// Port server will listen on
 	port *string
@@ -41,8 +48,8 @@ func startServer() {
 	// Set up server
 	server.Addr = ":" + *port
 	server.Handler = mux
-	server.ReadTimeout = time.Duration(30) * time.Second
-	server.WriteTimeout = time.Duration(30) * time.Second
+	server.ReadTimeout = time.Duration(DEFAULT_SERVER_TIMEOUT) * time.Second
+	server.WriteTimeout = time.Duration(DEFAULT_SERVER_TIMEOUT) * time.Second
 
 	// Set up server routes
 	mux.Handle("/", http.HandlerFunc(handle))
@@ -59,7 +66,7 @@ func main() {
 	log.Info("Server is starting")
 
 	// Get port from flags with fallback
-	port = flag.String("port", "8080", "default server port, ex: 8080")
+	port = flag.String("port", DEFAULT_PORT, "default server port, ex: 8080")
 
 	// Parse flags
 	flag.Parse()
